@@ -14,7 +14,7 @@ def main():
 
     #rabbitmq connection
     connection = pika.BlockingConnection(
-        pika.ConnectionParamenters(host="rabbitmq") # Da vores service name er rabbitmq
+        pika.ConnectionParameters(host="rabbitmq") # Da vores service name er rabbitmq
     )
 
     channel = connection.channel()
@@ -23,9 +23,9 @@ def main():
         err = to_mp3.start(body, fs_videos, fs_mp3s, ch)
 
         if err:
-            ch.basic_nack(delievery_tag=method.delievery_tag)
+            ch.basic_nack(delivery_tag=method.delivery_tag)
         else:
-            ch.basic_ack(delievery_tag=method.delievery_tag)
+            ch.basic_ack(delivery_tag=method.delivery_tag)
 
     
 

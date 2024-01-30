@@ -1,33 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: auth
+  name: converter
   labels:
-    app: auth
-
-spec: 
-  replicas: 1
+    app: converter
+spec:
+  replicas: 4
   selector:
     matchLabels:
-      app: auth
+      app: converter
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: 3
+      maxSurge: 8
   template:
     metadata:
       labels:
-        app: auth
+        app: converter
     spec:
       containers:
-        - name: auth
-          image: zteffano/auth
-          ports:
-            - containerPort: 5000
+        - name: converter
+          image: zteffano/converter
           envFrom:
             - configMapRef:
-                name: auth-configmap
+                name: converter-configmap
             - secretRef:
-                name: auth-secret
-
-   
+                name: converter-secret

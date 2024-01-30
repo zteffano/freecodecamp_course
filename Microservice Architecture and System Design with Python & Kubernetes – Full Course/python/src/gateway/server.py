@@ -38,8 +38,9 @@ def upload():
     access = json.loads(access)
 
     if access["admin"]:
-        if len(request.files) != 1:
-            return "exactly 1 file required"
+        print(f"--> Request Files: {request.files}")
+        if len(request.files) > 1 or len(request.files) < 1:
+            return "exactly 1 file required", 400
         
 
         for _, f in request.files.items():
