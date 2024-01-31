@@ -5,14 +5,14 @@ metadata:
   labels:
     app: gateway
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: gateway
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: 3
+      maxSurge: 2
   template:
     metadata:
       labels:

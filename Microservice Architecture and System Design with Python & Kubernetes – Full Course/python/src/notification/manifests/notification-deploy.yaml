@@ -1,28 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: converter
+  name: notification
   labels:
-    app: converter
+    app: notification
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: converter
+      app: notification
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: 4
+      maxSurge: 2
   template:
     metadata:
       labels:
-        app: converter
+        app: notification
     spec:
       containers:
-        - name: converter
-          image: zteffano/converter
+        - name: notification
+          image: zteffano/notification
           envFrom:
             - configMapRef:
-                name: converter-configmap
+                name: notification-configmap
             - secretRef:
-                name: converter-secret
+                name: notification-secret

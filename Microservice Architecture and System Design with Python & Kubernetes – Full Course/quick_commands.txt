@@ -1,0 +1,11 @@
+//NOTE til mig selv: Husk at resette APP-password til dummy account hvis dette repo skal public og tjek secrets
+
+kubectl apply -f auth/manifests
+kubectl apply -f converter/manifests
+kubectl apply -f gateway/manifests
+kubectl apply -f notification/manifests
+
+kubectl delete -f auth/manifests
+kubectl delete -f converter/manifests
+kubectl delete -f gateway/manifests
+kubectl delete -f notification/manifests
